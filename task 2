@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class Kinematics {
+public:
+    // Function to calculate final velocity: v_f = v_i + a * t
+    static double calculateFinalVelocity(double initialVelocity, double acceleration, double time) {
+        return initialVelocity + (acceleration * time);
+    }
+
+    // Function to calculate displacement: s = v_i * t + 0.5 * a * t^2
+    static double calculateDisplacement(double initialVelocity, double acceleration, double time) {
+        return (initialVelocity * time) + (0.5 * acceleration * time * time);
+    }
+
+    // Function to calculate final velocity given displacement: v_f^2 = v_i^2 + 2 * a * s
+    static double calculateFinalVelocityWithDisplacement(double initialVelocity, double acceleration, double displacement) {
+        return sqrt((initialVelocity * initialVelocity) + (2 * acceleration * displacement));
+    }
+};
+
+int main() {
+    double initialVelocity, acceleration, time, displacement;
+    int choice;
+
+    cout << "Kinematics Equation Solver\n";
+    cout << "Choose a calculation:\n";
+    cout << "1. Final velocity (given initial velocity, acceleration, and time)\n";
+    cout << "2. Displacement (given initial velocity, acceleration, and time)\n";
+    cout << "3. Final velocity (given initial velocity, acceleration, and displacement)\n";
+    cout << "Enter your choice (1/2/3): ";
+    cin >> choice;
+
+    switch (choice) {
+    case 1:
+        cout << "Enter initial velocity (m/s): ";
+        cin >> initialVelocity;
+        cout << "Enter acceleration (m/s^2): ";
+        cin >> acceleration;
+        cout << "Enter time (s): ";
+        cin >> time;
+        cout << "Final velocity: " << Kinematics::calculateFinalVelocity(initialVelocity, acceleration, time) << " m/s\n";
+        break;
+
+    case 2:
+        cout << "Enter initial velocity (m/s): ";
+        cin >> initialVelocity;
+        cout << "Enter acceleration (m/s^2): ";
+        cin >> acceleration;
+        cout << "Enter time (s): ";
+        cin >> time;
+        cout << "Displacement: " << Kinematics::calculateDisplacement(initialVelocity, acceleration, time) << " m\n";
+        break;
+
+    case 3:
+        cout << "Enter initial velocity (m/s): ";
+        cin >> initialVelocity;
+        cout << "Enter acceleration (m/s^2): ";
+        cin >> acceleration;
+        cout << "Enter displacement (m): ";
+        cin >> displacement;
+        cout << "Final velocity: " << Kinematics::calculateFinalVelocityWithDisplacement(initialVelocity, acceleration, displacement) << " m/s\n";
+        break;
+
+    default:
+        cout << "Invalid choice!";
+        break;
+    }
+
+    return 0;
+}
